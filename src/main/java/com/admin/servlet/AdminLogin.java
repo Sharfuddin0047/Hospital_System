@@ -1,6 +1,8 @@
-package com.user.servlet;
+package com.admin.servlet;
 
 import java.io.IOException;
+
+import com.entity.User;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,36 +11,24 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import com.dao.UserDao;
-import com.db.DbConnect;
-import com.entity.User;
+@WebServlet(value = "/adminLogin")
+public class AdminLogin extends HttpServlet{
 
-@WebServlet(value="/user_register")
-public class UserRegister extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		try {
-			
-			String fullName=req.getParameter("name");
 			String email=req.getParameter("email");
 			String password=req.getParameter("password");
 			
-			User u = new User(fullName, email, password);
-			
-			UserDao dao = new UserDao(DbConnect.getConn());
 			HttpSession session = req.getSession();
 			
-			boolean f=dao.register(u);
-			System.out.println("Register result " + f);
-			if(f) {
-				session.setAttribute("sucMsg", "Registered Successfully");
-				resp.sendRedirect("signup.jsp");
+			if("admin@gmail.com".equals(email) && "admin".equals(password)) {
+				session.setAttribute("adminObj", new User());
+				resp.sendRedirect("admin/index.jsp");
 			} else {
-				session.setAttribute("errorMsg", "Something went wrong");
-				resp.sendRedirect("signup.jsp");
+				session.setAttribute("errorMsg", "Invalid email & Password");
+				resp.sendRedirect("admin_login.jsp");
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

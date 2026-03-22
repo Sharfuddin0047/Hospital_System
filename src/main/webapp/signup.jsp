@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ page isELIgnored="false" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,16 +31,16 @@
 		<div class="card login-card">
 
 			<div class="card-header text-center bg-dark text-white">
-				<h4>SignUp Page</h4>
+				<h4>SignUp Page</h4>				
 
 				<c:if test="${not empty sucMsg}">
 					<p class="text-center text-success fs-3">${sucMsg}</p>
-					<c:remove var="sucMsg" />
+					<c:remove var="sucMsg" scope="session"/> 
 				</c:if>
 
-				<c:if test="${not empty errMsg}">
-					<p class="text-center text-danger fs-3">${errMsg}</p>
-					<c:remove var="errMsg" />
+				<c:if test="${not empty errorMsg}">
+					<p class="text-center text-danger fs-3">${errorMsg}</p>
+					<c:remove var="errorMsg" scope="session"/>
 				</c:if>
 			</div>
 
