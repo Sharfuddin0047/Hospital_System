@@ -66,7 +66,7 @@
 					</div>
 
 					<div class="d-grid">
-						<button type="submit" class="btn btn-dark">Login</button>
+						<button type="submit" class="btn btn-dark">Register</button>
 					</div>
 
 					<div class="text-center mt-3">

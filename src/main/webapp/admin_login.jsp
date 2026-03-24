@@ -31,7 +31,7 @@
 		<div class="card-header text-center bg-dark text-white">
 			<h4>Admin Login</h4>
 			
-			<c:if test="${not empty sucMsg}">
+				<c:if test="${not empty sucMsg}">
 					<p class="text-center text-success fs-3">${sucMsg}</p>
 					<c:remove var="sucMsg" scope="session"/> 
 				</c:if>
